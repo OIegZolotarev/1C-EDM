@@ -3,6 +3,7 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace DatabaseRegister;
 
 int main(array<String^>^ args) {
 	
@@ -10,6 +11,7 @@ int main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	
 	
+	DatabaseRegister::PlatformManager::ScanInstalledPlatforms();
 	DbRegisterToolVS::frmMain ^ frm = gcnew DbRegisterToolVS::frmMain(gcnew DBAdapter(),args);
 
 	Application::Run(frm);

@@ -1,5 +1,8 @@
 #include "DBAdapter.h"
 
+using namespace DatabaseRegister;
+using namespace Windows::Forms;
+
 DBAdapter::DBAdapter(void)
 {
 	m_DBConnection = gcnew SQLiteConnection("Data Source=database.db;Version=3;");
@@ -71,9 +74,7 @@ void DBAdapter::QueryProjectList( DBProjectList^ list,Int64 filter)
 		c->m_DBClient = gcnew DBClient();
 		c->m_DBClient->m_iDBId = Int64::Parse(r["clientId"]->ToString());
 		c->m_DBClient->QueryFromDB(this);
-
-
-		
+				
 		list->Add(c);
 	}
 }
@@ -143,6 +144,17 @@ void DBAdapter::EnsureDirExists( String ^ path )
 
 void DBAdapter::RegisterDB( DBProject^ project, DBScanRecordsList ^ l )
 {
+	for each(DBScanRecord ^ r in l)
+	{
+		EnterpriseDatabase ^ d = gcnew EnterpriseDatabase;
+		DatabaseRegister::DBSettingsForm ^ pForm = gcnew DatabaseRegister::DBSettingsForm(d);
+		DialogResult ^ r = pForm->ShowDialog();
+
+		if (r == DialogResult::OK)
+		{
+			d->WriteToDB();
+		}
+	}
 	
 }
 

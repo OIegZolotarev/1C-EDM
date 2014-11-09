@@ -63,31 +63,13 @@ namespace DbRegisterToolVS {
 	public ref class frmMain : public System::Windows::Forms::Form
 	{
 	public:
-		frmMain(DBAdapter ^ db,array<String^>^ args)
-		{
-			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
-			
-			m_DBAdapter = db;
-			RefereshClientsList();
-			RefreshProjectList();
-
-			ScanBasesList("E:\\Tmp\\DebugDBReg\\");
-		}
+		frmMain(DBAdapter ^ db,array<String^>^ args);
 
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
-		~frmMain()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+		~frmMain();
 	private: System::Windows::Forms::CheckedListBox^  cbFoundDatabases;
 	protected: 
 
@@ -316,82 +298,14 @@ namespace DbRegisterToolVS {
 
 		void ScanBasesList(String ^ path);
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 frmAddClient ^ frm = gcnew frmAddClient(m_DBAdapter);
-				 frm->ShowDialog();
-				 RefereshClientsList();
-			 }
-private: System::Void btAddProject_Click(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 frmAddProject ^ frm = gcnew frmAddProject(m_DBAdapter,(DBClient^)cbClientsList->SelectedItem);
-			 frm->ShowDialog();
-			 RefreshProjectList();
-		 }
-private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbClientsList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
-		 {
-			 RefreshProjectList();
-		 }
-private: System::Void btSelectAll_Click(System::Object^  sender, System::EventArgs^  e) {
-
-			 for(int i = 0 ; i < cbFoundDatabases->Items->Count ; i++)
-			 {
-				 cbFoundDatabases->SetItemCheckState(i,CheckState::Checked);
-			 }
-		 }
-private: System::Void btUnselectAll_Click(System::Object^  sender, System::EventArgs^  e) {
-			 for(int i = 0 ; i < cbFoundDatabases->Items->Count ; i++)
-			 {
-				 cbFoundDatabases->SetItemCheckState(i,CheckState::Unchecked);
-			 }
-		 }
-private: System::Void btInvert_Click(System::Object^  sender, System::EventArgs^  e) {
-			 for(int i = 0 ; i < cbFoundDatabases->Items->Count ; i++)
-			 {
-				 CheckState rev = cbFoundDatabases->GetItemCheckState(i);
-				 if (rev == CheckState::Checked)
-					 rev = CheckState::Unchecked;
-				 else rev = CheckState::Checked;
-
-				 cbFoundDatabases->SetItemCheckState(i,rev);
-			 }
-		 }
-private: System::Void btAddBases_Click(System::Object^  sender, System::EventArgs^  e) {
-
-			 if (cbProjectsList->SelectedIndex == -1)
-			 {
-				 Windows::Forms::MessageBox::Show("Не указан проект!");
-				 return;
-			 }
-
-			 DBScanRecordsList ^ l = gcnew DBScanRecordsList;
-
-			 for each(DBScanRecord ^ r in cbFoundDatabases->CheckedItems)
-			 {
-				 again:
-				 String ^ name = "";
-				 Windows::Forms::DialogResult dr = ShowInputDialog(name,"Введите название для \"" + r->m_strPath + "\"");
-
-				 if (dr == Windows::Forms::DialogResult::Cancel)
-				 {
-					 Windows::Forms::DialogResult dr2 = Windows::Forms::MessageBox::Show(this,"Отменить добавление\"" + r->m_strPath + "\"?" ,"Регистрация баз данных",Windows::Forms::MessageBoxButtons::YesNo);
-
-					if (dr2 == Windows::Forms::DialogResult::Yes)
-					{
-						continue;
-					}
-					else goto again;
-				 }
-
-				 r->m_strName = name;
-				 l->Add(r);
-			 }
-
-			 m_DBAdapter->RegisterDB((DBProject^)cbProjectsList->SelectedItem,l);
-		 }
-private: System::Void frmMain_Load(System::Object^  sender, System::EventArgs^  e) {
-		 }
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void btAddProject_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+private: System::Void cbClientsList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+private: System::Void btSelectAll_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void btUnselectAll_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void btInvert_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void btAddBases_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void frmMain_Load(System::Object^  sender, System::EventArgs^  e);
 };
 }

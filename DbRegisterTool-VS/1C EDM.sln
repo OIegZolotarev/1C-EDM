@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DbRegisterTool-VS", "DbRegisterTool-VS\DbRegisterTool-VS.vcxproj", "{673B7606-2800-4805-8F8F-15A638AA0BE3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DatabaseRegister", "..\DatabaseRegister\DatabaseRegister.vcxproj", "{D41A3C91-0DEA-4724-809E-65AA162A5D5D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignerIBNameFixDaemon", "..\DesignerIBNameFixDaemon\DesignerIBNameFixDaemon.vcxproj", "{EB01DDD9-EDBE-44F4-A5E8-2A27789464E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +17,14 @@ Global
 		{673B7606-2800-4805-8F8F-15A638AA0BE3}.Debug|Win32.Build.0 = Debug|Win32
 		{673B7606-2800-4805-8F8F-15A638AA0BE3}.Release|Win32.ActiveCfg = Release|Win32
 		{673B7606-2800-4805-8F8F-15A638AA0BE3}.Release|Win32.Build.0 = Release|Win32
+		{D41A3C91-0DEA-4724-809E-65AA162A5D5D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D41A3C91-0DEA-4724-809E-65AA162A5D5D}.Debug|Win32.Build.0 = Debug|Win32
+		{D41A3C91-0DEA-4724-809E-65AA162A5D5D}.Release|Win32.ActiveCfg = Release|Win32
+		{D41A3C91-0DEA-4724-809E-65AA162A5D5D}.Release|Win32.Build.0 = Release|Win32
+		{EB01DDD9-EDBE-44F4-A5E8-2A27789464E4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB01DDD9-EDBE-44F4-A5E8-2A27789464E4}.Debug|Win32.Build.0 = Debug|Win32
+		{EB01DDD9-EDBE-44F4-A5E8-2A27789464E4}.Release|Win32.ActiveCfg = Release|Win32
+		{EB01DDD9-EDBE-44F4-A5E8-2A27789464E4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
